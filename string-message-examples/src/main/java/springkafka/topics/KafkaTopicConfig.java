@@ -1,4 +1,4 @@
-package ch.ttt.springkafka.topics;
+package springkafka.topics;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;

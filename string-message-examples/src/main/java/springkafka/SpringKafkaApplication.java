@@ -1,10 +1,10 @@
-package ch.ttt.springkafka;
+package springkafka;
 
-import ch.ttt.springkafka.producer.KafkaStringPublisher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import springkafka.producer.KafkaStringPublisher;
 
 /*
  * Publishes/Consumer String values
