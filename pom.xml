@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>string-message-examples</module>
+        <module>generic-message-examples</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

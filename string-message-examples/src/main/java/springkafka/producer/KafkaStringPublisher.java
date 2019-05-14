@@ -21,7 +21,10 @@ public class KafkaStringPublisher {
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onSuccess(final SendResult<String, String> result) {
-                log.info("Sent message=[" + message + "] with offset=[" + result.getRecordMetadata().offset() + "]");
+                log.info("Sent message='" + message + "'"
+                        + " to [topic=" + result.getRecordMetadata().topic()
+                        + ", partition=" + result.getRecordMetadata().partition()
+                        + ", offset=" + result.getRecordMetadata().offset() + "]");
             }
 
             @Override
