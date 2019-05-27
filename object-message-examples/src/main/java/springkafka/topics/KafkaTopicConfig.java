@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * AdminClient - create topics programmatically
+ * KafkaAdmin bean - will automatically add topics for all beans of type NewTopic
  */
 @Configuration
 public class KafkaTopicConfig {
@@ -27,7 +27,7 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic stringsTopic() {
-        return new NewTopic("strings", 1, (short) 1);
+    public NewTopic greetingsTopic() {
+        return new NewTopic("greeting", 1, (short) 1);
     }
 }

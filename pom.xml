@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>string-message-examples</module>
+        <module>object-message-examples</module>
         <module>generic-message-examples</module>
     </modules>
     <parent>
@@ -30,5 +31,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

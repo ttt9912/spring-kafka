@@ -12,10 +12,10 @@ import springkafka.producer.KafkaStringPublisher;
  * - Consumer/Producer use StringSerializer
  */
 @SpringBootApplication
-public class SpringKafkaApplication {
+public class StringKafkaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringKafkaApplication.class, args);
+        SpringApplication.run(StringKafkaApplication.class, args);
     }
 
 

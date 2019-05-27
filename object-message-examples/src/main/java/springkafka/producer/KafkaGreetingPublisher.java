@@ -7,31 +7,36 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
+import springkafka.api.Greeting;
 
+/*
+ * By default, key=null
+ */
 @Slf4j
 @Component
-public class KafkaStringPublisher {
+public class KafkaGreetingPublisher {
 
     @Autowired
-    private KafkaTemplate<String, String> stringKafkaTemplate;
+    private KafkaTemplate<String, Greeting> greetingKafkaTemplate;
 
-    public void publishString(final String topic, final String message) {
-        ListenableFuture<SendResult<String, String>> future = stringKafkaTemplate.send(topic, message);
+    public void publishGreeting(final Greeting greeting) {
+        ListenableFuture<SendResult<String, Greeting>> future = greetingKafkaTemplate.send(Greeting.GREETING_TOPIC, greeting);
 
         // optional callback to be executed after send
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+        future.addCallback(new ListenableFutureCallback<SendResult<String, Greeting>>() {
             @Override
-            public void onSuccess(final SendResult<String, String> result) {
-                log.info("Sent message='" + message + "'"
+            public void onSuccess(final SendResult<String, Greeting> result) {
+                log.info("Sent greeting='" + greeting + "'"
                         + " with key=" + result.getProducerRecord().key()
                         + " to [topic=" + result.getRecordMetadata().topic()
                         + ", partition=" + result.getRecordMetadata().partition()
                         + ", offset=" + result.getRecordMetadata().offset() + "]");
+
             }
 
             @Override
-            public void onFailure(final Throwable throwable) {
-                log.info("Unable to send message=[" + message + "] due to : " + throwable.getMessage());
+            public void onFailure(final Throwable ex) {
+                log.info("Unable to send message=[" + greeting + "] due to : " + ex.getMessage());
             }
         });
     }
