@@ -21,4 +21,14 @@ public class MovieListener extends ApiElementListener<MovieKey, Movie> {
     String getTopic() {
         return Movie.MOVIE_TOPIC;
     }
+
+    @Override
+    public Class getApiElementClass() {
+        return Movie.class;
+    }
+
+    @Override
+    public Class getApiKeyClass() {
+        return MovieKey.class;
+    }
 }

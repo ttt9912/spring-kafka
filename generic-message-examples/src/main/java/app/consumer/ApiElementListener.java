@@ -17,7 +17,7 @@ public abstract class ApiElementListener<KEY extends ApiKey, VALUE extends ApiEl
         log.info("received record [topic={}, partition={}, offset={}, key={}, value={}]",
                 record.topic(), record.partition(), record.offset(), record.key(), record.value());
 
-        consume(record.value());
+        //consume(record.value());
     }
 
     abstract void consume(VALUE apiElement);
@@ -25,4 +25,8 @@ public abstract class ApiElementListener<KEY extends ApiKey, VALUE extends ApiEl
     abstract VALUE process(VALUE apiElement);
 
     abstract String getTopic();
+
+    public abstract Class getApiElementClass();
+
+    public abstract Class getApiKeyClass();
 }

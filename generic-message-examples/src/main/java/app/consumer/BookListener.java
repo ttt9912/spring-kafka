@@ -21,4 +21,14 @@ public class BookListener extends ApiElementListener<BookKey, Book> {
     String getTopic() {
         return Book.BOOK_TOPIC;
     }
+
+    @Override
+    public Class getApiElementClass() {
+        return Book.class;
+    }
+
+    @Override
+    public Class getApiKeyClass() {
+        return BookKey.class;
+    }
 }

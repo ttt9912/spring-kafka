@@ -64,25 +64,28 @@ public class KafkaApiElementConsumerConfig implements ApplicationContextAware {
 
 // create KafkaConsumerFactory which adds information about parsing key and value
 // you could also do it in config but this is compile-safe approach
-        DefaultKafkaConsumerFactory<ApiKey, ApiElement> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
-                new JsonDeserializer<>(ApiKey.class),
-                new JsonDeserializer<>(ApiElement.class));
+        //DefaultKafkaConsumerFactory<ApiKey, ApiElement> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
+        //      new JsonDeserializer<>(ApiKey.class),
+        //    new JsonDeserializer<>(ApiElement.class));
 
 // you also need container which has info about topic and what to do with messages
 
 
-        /*
         Map<String, ApiElementListener> listeners = ctx.getBeansOfType(ApiElementListener.class);
 
         listeners.values().forEach(listener -> {
+                    DefaultKafkaConsumerFactory<ApiKey, ApiElement> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
+                            new JsonDeserializer<>(listener.getApiKeyClass()),
+                            new JsonDeserializer<>(listener.getApiElementClass()));
                     ContainerProperties containerProperties = new ContainerProperties(listener.getTopic());
                     containerProperties.setMessageListener(listener);
-                    ConcurrentMessageListenerContainer container = new ConcurrentMessageListenerContainer<>(apiElementConsumerFactory("local-groupId"), containerProperties);
+                    ConcurrentMessageListenerContainer container = new ConcurrentMessageListenerContainer<>(kafkaConsumerFactory, containerProperties);
                     container.start();
                 }
         );
-        */
 
+
+        /*
         DefaultKafkaConsumerFactory<BookKey, Book> bookConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
                 new JsonDeserializer<>(BookKey.class),
                 new JsonDeserializer<>(Book.class));
@@ -91,6 +94,7 @@ public class KafkaApiElementConsumerConfig implements ApplicationContextAware {
         containerProperties.setMessageListener(bookListener);
         ConcurrentMessageListenerContainer container = new ConcurrentMessageListenerContainer<>(bookConsumerFactory, containerProperties);
         container.start();
+        */
     }
 
     @Override
