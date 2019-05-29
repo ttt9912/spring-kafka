@@ -8,6 +8,6 @@ import lombok.Value;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookKey implements ApiKey {
+public class BookKey extends ApiKey {
     private String title;
 }

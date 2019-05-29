@@ -8,6 +8,6 @@ import lombok.Value;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieKey implements ApiKey{
+public class MovieKey extends ApiKey{
     private String title;
 }

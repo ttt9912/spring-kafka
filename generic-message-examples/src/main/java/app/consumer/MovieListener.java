@@ -23,12 +23,12 @@ public class MovieListener extends ApiElementListener<MovieKey, Movie> {
     }
 
     @Override
-    public Class getApiElementClass() {
+    public Class<Movie> getApiElementClass() {
         return Movie.class;
     }
 
     @Override
-    public Class getApiKeyClass() {
+    public Class<MovieKey> getApiKeyClass() {
         return MovieKey.class;
     }
 }

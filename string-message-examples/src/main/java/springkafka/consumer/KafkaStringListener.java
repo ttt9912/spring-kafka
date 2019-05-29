@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class KafkaStringListener {
 
     @KafkaListener(topics = "strings", groupId = "strings-all", containerFactory = "allKafkaListenerContainerFactory")
-    public void listen(String message, @Header(KafkaHeaders.MESSAGE_KEY) String key, @Header(KafkaHeaders.OFFSET) int offset) {
+    public void listen(String message, @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key, @Header(KafkaHeaders.OFFSET) int offset) {
         log.info("Consumer Group 'strings-all' received [key={}, value={}] with offset={}", key, message, offset);
     }
 

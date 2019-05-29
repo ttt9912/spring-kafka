@@ -8,10 +8,9 @@ import lombok.experimental.Delegate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Movie implements ApiElement<MovieKey> {
+public class Movie extends ApiElement<MovieKey> {
     public static final String MOVIE_TOPIC = "movie";
 
-    @Delegate
     private MovieKey key;
     private Integer year;
 

@@ -1,6 +1,8 @@
 package app.api;
 
-public interface ApiElement<KEY extends ApiKey> {
-    KEY getKey();
-    String getTopic();
+import java.io.Serializable;
+
+public abstract class ApiElement<KEY extends ApiKey> implements Serializable {
+    public abstract KEY getKey();
+    public abstract String getTopic();
 }

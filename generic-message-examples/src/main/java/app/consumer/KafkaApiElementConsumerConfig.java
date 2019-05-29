@@ -7,20 +7,17 @@ import app.api.BookKey;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
-import org.springframework.kafka.listener.MessageListener;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
@@ -34,22 +31,22 @@ public class KafkaApiElementConsumerConfig implements ApplicationContextAware {
     @Value("${kafka.host}")
     private String bootstrapAddress;
 
-    /*
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<ApiKey, ApiElement> apiElementKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<ApiKey, ApiElement> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(apiElementConsumerFactory("api-group"));
-        return factory;
-    }*/
 
-    private ConsumerFactory<ApiKey, ApiElement> apiElementConsumerFactory(final String groupId) {
-        final HashMap<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        return new DefaultKafkaConsumerFactory<>(props,
-                new JsonDeserializer<>(ApiKey.class),
-                new JsonDeserializer<>(ApiElement.class));
-    }
+//    @Bean
+//    public ConcurrentKafkaListenerContainerFactory<ApiKey, ApiElement> apiElementKafkaListenerContainerFactory() {
+//        ConcurrentKafkaListenerContainerFactory<ApiKey, ApiElement> factory = new ConcurrentKafkaListenerContainerFactory<>();
+//        factory.setConsumerFactory(apiElementConsumerFactory("api-group"));
+//        return factory;
+//    }
+//
+//    private ConsumerFactory<ApiKey, ApiElement> apiElementConsumerFactory(final String groupId) {
+//        final HashMap<String, Object> props = new HashMap<>();
+//        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+//        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+//        return new DefaultKafkaConsumerFactory<>(props,
+//                new JsonDeserializer<>(ApiKey.class),
+//                new JsonDeserializer<>(ApiElement.class));
+//    }
 
     ApplicationContext ctx;
 
@@ -64,9 +61,7 @@ public class KafkaApiElementConsumerConfig implements ApplicationContextAware {
 
 // create KafkaConsumerFactory which adds information about parsing key and value
 // you could also do it in config but this is compile-safe approach
-        //DefaultKafkaConsumerFactory<ApiKey, ApiElement> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
-        //      new JsonDeserializer<>(ApiKey.class),
-        //    new JsonDeserializer<>(ApiElement.class));
+
 
 // you also need container which has info about topic and what to do with messages
 
@@ -75,26 +70,14 @@ public class KafkaApiElementConsumerConfig implements ApplicationContextAware {
 
         listeners.values().forEach(listener -> {
                     DefaultKafkaConsumerFactory<ApiKey, ApiElement> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
-                            new JsonDeserializer<>(listener.getApiKeyClass()),
-                            new JsonDeserializer<>(listener.getApiElementClass()));
+                            new JsonDeserializer<ApiKey>(listener.getApiKeyClass()),
+                            new JsonDeserializer<ApiElement>(listener.getApiElementClass()));
                     ContainerProperties containerProperties = new ContainerProperties(listener.getTopic());
                     containerProperties.setMessageListener(listener);
                     ConcurrentMessageListenerContainer container = new ConcurrentMessageListenerContainer<>(kafkaConsumerFactory, containerProperties);
                     container.start();
                 }
         );
-
-
-        /*
-        DefaultKafkaConsumerFactory<BookKey, Book> bookConsumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfig,
-                new JsonDeserializer<>(BookKey.class),
-                new JsonDeserializer<>(Book.class));
-        BookListener bookListener = (BookListener) ctx.getBean("bookListener");
-        ContainerProperties containerProperties = new ContainerProperties(bookListener.getTopic());
-        containerProperties.setMessageListener(bookListener);
-        ConcurrentMessageListenerContainer container = new ConcurrentMessageListenerContainer<>(bookConsumerFactory, containerProperties);
-        container.start();
-        */
     }
 
     @Override

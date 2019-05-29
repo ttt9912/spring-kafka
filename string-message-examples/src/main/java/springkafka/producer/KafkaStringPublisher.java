@@ -16,7 +16,8 @@ public class KafkaStringPublisher {
     private KafkaTemplate<String, String> stringKafkaTemplate;
 
     public void publishString(final String topic, final String message) {
-        ListenableFuture<SendResult<String, String>> future = stringKafkaTemplate.send(topic, message);
+        // ListenableFuture<SendResult<String, String>> future = stringKafkaTemplate.send(topic, message);
+        ListenableFuture<SendResult<String, String>> future = stringKafkaTemplate.send(topic, message, message);
 
         // optional callback to be executed after send
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {

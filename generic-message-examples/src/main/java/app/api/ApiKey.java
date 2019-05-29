@@ -1,4 +1,6 @@
 package app.api;
 
-public interface ApiKey {
+import java.io.Serializable;
+
+public abstract class ApiKey implements Serializable{
 }
