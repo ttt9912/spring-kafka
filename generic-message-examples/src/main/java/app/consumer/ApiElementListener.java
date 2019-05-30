@@ -11,6 +11,13 @@ import org.springframework.kafka.listener.MessageListener;
  */
 @Slf4j
 public abstract class ApiElementListener<KEY extends ApiKey, VALUE extends ApiElement<KEY>> implements MessageListener<KEY, VALUE> {
+//public abstract class ApiElementListener<KEY extends ApiKey, VALUE extends ApiElement<KEY>> implements MessageListener<String, String> {
+
+//    @Override
+//    public void onMessage(final ConsumerRecord<String, String> record) {
+//        log.info("received record [topic={}, partition={}, offset={}, key={}, value={}]",
+//                record.topic(), record.partition(), record.offset(), record.key(), record.value());
+//    }
 
     @Override
     public void onMessage(final ConsumerRecord<KEY, VALUE> record) {
