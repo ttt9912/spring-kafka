@@ -10,29 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class BookListener extends ApiElementListener<BookKey, Book> {
-
-    @Override
-    void consume(final Book apiElement) {
-    }
-
-    @Override
-    Book process(final Book apiElement) {
-        return null;
-    }
-
+public class BookListener extends StringListener<BookKey, Book> {
     @Override
     String getTopic() {
         return Book.BOOK_TOPIC;
-    }
-
-    @Override
-    public Class<Book> getApiElementClass() {
-        return Book.class;
-    }
-
-    @Override
-    public Class<BookKey> getApiKeyClass() {
-        return BookKey.class;
     }
 }

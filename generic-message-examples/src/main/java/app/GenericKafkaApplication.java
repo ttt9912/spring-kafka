@@ -4,7 +4,7 @@ import app.api.Book;
 import app.api.BookKey;
 import app.api.Movie;
 import app.api.MovieKey;
-import app.producer.KafkaApiElementPublisher;
+import app.producer.KafkaStringPublisher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +21,7 @@ public class GenericKafkaApplication {
     }
 
     @Bean
-    CommandLineRunner producer(KafkaApiElementPublisher publisher) {
+    CommandLineRunner producer(KafkaStringPublisher publisher) {
         return args -> {
             publisher.publishApiElement(new Book(new BookKey("Homo Faber"), "Max Frisch"));
             publisher.publishApiElement(new Book(new BookKey("Faust"), "Goethe"));

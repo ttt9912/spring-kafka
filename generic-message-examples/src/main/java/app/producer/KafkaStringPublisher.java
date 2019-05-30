@@ -12,18 +12,20 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Slf4j
 @Component
-public class KafkaApiElementPublisher {
+public class KafkaStringPublisher {
 
     @Autowired
-    private KafkaTemplate<ApiKey, ApiElement> kafkaTemplate;
+    private KafkaTemplate<String, String> stringKafkaTemplate;
 
     public void publishApiElement(final ApiElement element) {
-        final ListenableFuture<SendResult<ApiKey, ApiElement>> future = kafkaTemplate.send(element.getTopic(), element.getKey(), element);
+        ListenableFuture<SendResult<String, String>> future =
+                // TODO serialize
+                stringKafkaTemplate.send(element.getTopic(), element.getKey().toString(), element.toString());
 
         // optional callback to be executed after send
-        future.addCallback(new ListenableFutureCallback<SendResult<ApiKey, ApiElement>>() {
+        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
-            public void onSuccess(final SendResult<ApiKey, ApiElement> result) {
+            public void onSuccess(final SendResult<String, String> result) {
                 log.info("Sent kafka message [topic={}, partition={}, offset={}, key={}, value={}]",
                         result.getRecordMetadata().topic(),
                         result.getRecordMetadata().partition(),
