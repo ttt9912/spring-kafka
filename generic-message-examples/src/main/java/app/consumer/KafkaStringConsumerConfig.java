@@ -39,7 +39,7 @@ public class KafkaStringConsumerConfig implements ApplicationContextAware {
 
     @Bean
     public void setupKafkaListener() {
-        Map<String, StringListener> listeners = ctx.getBeansOfType(StringListener.class);
+        Map<String, KafkaStringMessageListener> listeners = ctx.getBeansOfType(KafkaStringMessageListener.class);
 
         listeners.values().forEach(listener -> {
                     ContainerProperties containerProperties = new ContainerProperties(listener.getTopic());
