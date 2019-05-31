@@ -5,7 +5,7 @@ import app.api.MovieKey;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieListener extends KafkaProcessor<MovieKey, Movie> {
+public class MovieProcessor extends KafkaProcessor<MovieKey, Movie> {
 
     @Override
     String getTopic() {

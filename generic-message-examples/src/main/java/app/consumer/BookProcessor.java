@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class BookListener extends KafkaProcessor<BookKey, Book> {
+public class BookProcessor extends KafkaProcessor<BookKey, Book> {
     @Override
     String getTopic() {
         return Book.BOOK_TOPIC;
