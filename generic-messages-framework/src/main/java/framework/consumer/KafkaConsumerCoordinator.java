@@ -1,8 +1,6 @@
-package app.framework;
+package framework.consumer;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +15,7 @@ public class KafkaConsumerCoordinator {
         this.listenerContainers = listenerContainers;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void startConsumers() {
+    public void startKafkaConsumers() {
         listenerContainers.forEach(this::startContainer);
     }
 

@@ -7,6 +7,7 @@
         <module>string-message-examples</module>
         <module>object-message-examples</module>
         <module>generic-message-examples</module>
+        <module>generic-messages-framework</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,19 +24,20 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ch.ttt</groupId>
+                <artifactId>generic-messages-framework</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

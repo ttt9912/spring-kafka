@@ -1,6 +1,6 @@
-package app.business.api;
+package app.api;
 
-import app.framework.ApiKey;
+import framework.api.ApiKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

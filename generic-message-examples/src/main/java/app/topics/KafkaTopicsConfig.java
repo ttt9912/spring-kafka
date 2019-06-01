@@ -1,4 +1,4 @@
-package app.business.topics;
+package app.topics;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;

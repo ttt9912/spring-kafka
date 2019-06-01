@@ -1,4 +1,4 @@
-package app.framework;
+package framework.consumer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -44,13 +44,13 @@ public class KafkaStringConsumerConfig {
 
     // combine MessageListeners & ListenerContainers
     @Bean
-    public List<ConcurrentMessageListenerContainer> listenerContainers(final List<KafkaStringMessageListener> messageListeners, KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> containerFactory) {
+    public List<ConcurrentMessageListenerContainer> listenerContainers(final List<KafkaListener> messageListeners, KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> containerFactory) {
         return messageListeners.stream()
                 .map(messageListener -> createListenerContainer(containerFactory, messageListener))
                 .collect(Collectors.toList());
     }
 
-    private ConcurrentMessageListenerContainer<String, String> createListenerContainer(final KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> containerFactory, final KafkaStringMessageListener messageListener) {
+    private ConcurrentMessageListenerContainer<String, String> createListenerContainer(final KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> containerFactory, final KafkaListener messageListener) {
         ConcurrentMessageListenerContainer<String, String> container = containerFactory.createContainer(messageListener.getTopic());
         container.getContainerProperties().setMessageListener(messageListener);
         return container;

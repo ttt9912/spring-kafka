@@ -1,6 +1,8 @@
-package app.framework;
+package framework.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import framework.api.ApiElement;
+import framework.api.ApiKey;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import java.io.IOException;
  * MessageListener - alternative to @KafkaListener
  */
 @Slf4j
-public abstract class KafkaStringMessageListener<SOURCE_KEY extends ApiKey, SOURCE extends ApiElement<SOURCE_KEY>> implements MessageListener<String, String> {
+public abstract class KafkaListener<SOURCE_KEY extends ApiKey, SOURCE extends ApiElement<SOURCE_KEY>> implements MessageListener<String, String> {
 
     @Autowired
     private ObjectMapper objectMapper;

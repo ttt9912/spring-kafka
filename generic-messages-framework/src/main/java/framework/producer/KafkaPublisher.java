@@ -1,7 +1,8 @@
-package app.framework;
+package framework.producer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import framework.api.ApiElement;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -12,7 +13,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Slf4j
 @Component
-public class KafkaStringPublisher {
+public class KafkaPublisher {
 
     @Autowired
     private KafkaTemplate<String, String> stringKafkaTemplate;
