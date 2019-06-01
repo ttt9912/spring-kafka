@@ -1,7 +1,7 @@
-package app.producer;
+package app.framework;
 
-import app.api.ApiElement;
-import app.api.ApiKey;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,13 +17,27 @@ public class KafkaStringPublisher {
     @Autowired
     private KafkaTemplate<String, String> stringKafkaTemplate;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     public void publishApiElement(final ApiElement element) {
         ListenableFuture<SendResult<String, String>> future =
-                // TODO serialize
-                stringKafkaTemplate.send(element.getTopic(), element.getKey().toString(), element.toString());
+                stringKafkaTemplate.send(element.getTopic(), serialize(element.getKey()), serialize(element));
 
-        // optional callback to be executed after send
-        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+        future.addCallback(createCallback(element));
+    }
+
+    private String serialize(final Object o) {
+        try {
+            return objectMapper.writeValueAsString(o);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error serializing element for " + o);
+        }
+    }
+
+    // optional callback
+    private ListenableFutureCallback<? super SendResult<String, String>> createCallback(final ApiElement element) {
+        return new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onSuccess(final SendResult<String, String> result) {
                 log.info("Sent kafka message [topic={}, partition={}, offset={}, key={}, value={}]",
@@ -36,9 +50,9 @@ public class KafkaStringPublisher {
 
             @Override
             public void onFailure(final Throwable ex) {
-                log.warn("Unable to send kafka message [topic={} key={} value={}] exception: {}" +
-                        element.getTopic(), element.getKey(), element, ex.getMessage());
+                throw new RuntimeException(String.format("Unable to send kafka message [topic=%s key=%s value=%s] exception: %s" +
+                        element.getTopic(), element.getKey(), element, ex.getMessage()));
             }
-        });
+        };
     }
 }

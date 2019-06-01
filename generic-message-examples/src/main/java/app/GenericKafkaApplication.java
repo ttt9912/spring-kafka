@@ -1,10 +1,10 @@
 package app;
 
-import app.api.Book;
-import app.api.BookKey;
-import app.api.Movie;
-import app.api.MovieKey;
-import app.producer.KafkaStringPublisher;
+import app.business.api.Book;
+import app.business.api.BookKey;
+import app.business.api.Movie;
+import app.business.api.MovieKey;
+import app.framework.KafkaStringPublisher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

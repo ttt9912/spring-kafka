@@ -1,4 +1,4 @@
-package app.api;
+package app.framework;
 
 public interface ApiKey {
 }

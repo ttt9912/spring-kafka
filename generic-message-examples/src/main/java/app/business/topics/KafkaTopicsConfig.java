@@ -1,4 +1,4 @@
-package app.topics;
+package app.business.topics;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -10,6 +10,9 @@ import org.springframework.kafka.core.KafkaAdmin;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * AdminClient - create topics programmatically
+ */
 @Configuration
 public class KafkaTopicsConfig {
 

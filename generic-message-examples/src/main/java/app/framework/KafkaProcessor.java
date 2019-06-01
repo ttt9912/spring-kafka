@@ -1,7 +1,5 @@
-package app.consumer;
+package app.framework;
 
-import app.api.ApiElement;
-import app.api.ApiKey;
 import lombok.extern.slf4j.Slf4j;
 
 /*
@@ -11,9 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class KafkaProcessor<SOURCE_KEY extends ApiKey, SOURCE extends ApiElement<SOURCE_KEY>> extends KafkaStringMessageListener<SOURCE_KEY, SOURCE> {
 
     @Override
-    void onEntity(final SOURCE entity) {
-        save(entity);
-        publish(process(entity));
+    public void onApiElement(final SOURCE apiElement) {
+        save(apiElement);
+        publish(process(apiElement));
     }
 
     private void save(final SOURCE entity) {
@@ -32,5 +30,5 @@ public abstract class KafkaProcessor<SOURCE_KEY extends ApiKey, SOURCE extends A
         return null;
     }
 
-    abstract String getTopic();
+    protected abstract String getTopic();
 }
