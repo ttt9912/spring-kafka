@@ -4,10 +4,8 @@ import app.api.Book;
 import app.api.BookKey;
 import framework.api.ApiElement;
 import framework.processor.KafkaProcessor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
 public class BookProcessor extends KafkaProcessor<BookKey, Book> {
 

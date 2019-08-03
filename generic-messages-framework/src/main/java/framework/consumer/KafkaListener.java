@@ -21,7 +21,7 @@ public abstract class KafkaListener<SOURCE_KEY extends ApiKey, SOURCE extends Ap
 
     @Override
     public void onMessage(final ConsumerRecord<String, String> record) {
-        log.info("received record [topic={}, partition={}, offset={}, key={}, value={}]",
+        log.info("KafkaListener >> received record [topic={}, partition={}, offset={}, key={}, value={}]",
                 record.topic(), record.partition(), record.offset(), record.key(), record.value());
 
         SOURCE apiElement = deserialize(record.value());

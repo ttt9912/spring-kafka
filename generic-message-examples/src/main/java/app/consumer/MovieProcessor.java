@@ -1,6 +1,5 @@
 package app.consumer;
 
-import app.api.Book;
 import app.api.Movie;
 import app.api.MovieKey;
 import framework.api.ApiElement;
@@ -22,6 +21,6 @@ public class MovieProcessor extends KafkaProcessor<MovieKey, Movie> {
 
     @Override
     protected ApiElement process(final Movie apiElement) {
-        return new Book(null, null);
+        return null;
     }
 }

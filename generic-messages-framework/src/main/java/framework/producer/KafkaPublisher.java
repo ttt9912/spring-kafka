@@ -41,7 +41,7 @@ public class KafkaPublisher {
         return new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onSuccess(final SendResult<String, String> result) {
-                log.info("Sent kafka message [topic={}, partition={}, offset={}, key={}, value={}]",
+                log.info("KafkaPublisher >> Sent kafka message [topic={}, partition={}, offset={}, key={}, value={}]",
                         result.getRecordMetadata().topic(),
                         result.getRecordMetadata().partition(),
                         result.getRecordMetadata().offset(),
