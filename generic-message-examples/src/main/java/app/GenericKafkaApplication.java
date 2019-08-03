@@ -30,6 +30,7 @@ public class GenericKafkaApplication {
 
         return args -> {
             publisher.publishApiElement(new Book(new BookKey("Homo Faber"), "Max Frisch"));
+            publisher.publishApiElement(new Book(new BookKey("Homo Faber"), "Max Frisch"));
             publisher.publishApiElement(new Book(new BookKey("Faust"), "Goethe"));
             publisher.publishApiElement(new Movie(new MovieKey("Once upon a time in Hollywood"), 2019));
             publisher.publishApiElement(new Movie(new MovieKey("Django Unchained"), 2012));
