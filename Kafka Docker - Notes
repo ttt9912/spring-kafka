@@ -1,9 +1,60 @@
 ---------------------------------------------------------------------------------
-start kafka
+Tutorial
 ---------------------------------------------------------------------------------
-- Start docker-compose in /Users/ttt/dev/workspaces/kafka-single-node
+https://github.com/confluentinc/cp-docker-images/wiki/Getting-Started
 
 ---------------------------------------------------------------------------------
-kafka tooling
+Installation
 ---------------------------------------------------------------------------------
-- See Notes in /kafka-single-node project
+1) copied docker-compose.yml from
+    https://github.com/confluentinc/cp-docker-images/blob/master/examples/kafka-single-node/docker-compose.yml
+
+2) docker-compose up
+
+---------------------------------------------------------------------------------
+Do Stuff in Kafka
+---------------------------------------------------------------------------------
+https://kafka.apache.org/quickstart
+
+1) connect to kafka
+    docker exec -it ttt-kafka bash
+
+2) go to bin
+    cd usr/bin
+
+---------------------------------------------------------------------------------
+# Create Topic
+---------------------------------------------------------------------------------
+kafka-topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic strings
+
+alternative: programmatically via spring
+
+---------------------------------------------------------------------------------
+# List Topics
+---------------------------------------------------------------------------------
+kafka-topics --list --zookeeper zookeeper:2181
+
+---------------------------------------------------------------------------------
+# Topic Details
+---------------------------------------------------------------------------------
+kafka-topics --describe --topic strings --zookeeper zookeeper:2181
+
+---------------------------------------------------------------------------------
+# Delete Topic
+---------------------------------------------------------------------------------
+kafka-topics --delete --zookeeper zookeeper:2181 --topic strings
+
+---------------------------------------------------------------------------------
+# Console Consumer
+---------------------------------------------------------------------------------
+kafka-console-consumer --bootstrap-server kafka:9092 --topic strings --from-beginning
+
+---------------------------------------------------------------------------------
+# Show Consumer Groups
+---------------------------------------------------------------------------------
+kafka-consumer-groups --list --bootstrap-server kafka:9092
+
+---------------------------------------------------------------------------------
+# Consumer Group Details
+---------------------------------------------------------------------------------
+kafka-consumer-groups --describe --group strings-filtered --bootstrap-server kafka:9092
