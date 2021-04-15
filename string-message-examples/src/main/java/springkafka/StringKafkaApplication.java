@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import springkafka.producer.KafkaStringPublisher;
 
 /*
- * Publishes/Consumer String values
+ * Publishes/Consumes String values
  * - uses KafkaTemplate<String, String>
  * - Consumer/Producer use StringSerializer
  */
