@@ -25,8 +25,10 @@ public class KafkaStringConsumerConfig {
     @Value("${kafka.host}")
     private String bootstrapAddress;
 
-    @Bean
-    public ConsumerFactory<String, String> consumerFactory(@Value("${kafka.consumer.group.id}") final String groupId) {
+    @Value("${kafka.consumer.group.id}")
+    private String groupId;
+
+    private ConsumerFactory<String, String> consumerFactory() {
         HashMap<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -36,9 +38,9 @@ public class KafkaStringConsumerConfig {
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory(final ConsumerFactory<String, String> consumerFactory) {
+    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
         final ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory);
+        factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 

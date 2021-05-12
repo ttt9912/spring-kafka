@@ -1,15 +1,21 @@
-# Tutorial
+## Tutorial
 
 https://github.com/confluentinc/cp-docker-images/wiki/Getting-Started
 
-# Start Kafka
+## Start Kafka
 
 `docker-compose up`
 
 docker-compose.yml
 from https://github.com/confluentinc/cp-docker-images/blob/master/examples/kafka-single-node/docker-compose.yml
 
-# Kafka Tools
+## Kafdrop
+
+**localhost:9000**
+
+https://github.com/obsidiandynamics/kafdrop
+
+## Kafka CLI
 
 https://kafka.apache.org/quickstart
 
@@ -35,7 +41,7 @@ alternative: programmatically via spring
 
 ### Topic Details
 
-`kafka-topics --describe --topic strings --zookeeper zookeeper:2181`
+`kafka-topics --describe --zookeeper zookeeper:2181 --topic strings`
 
 ### Delete Topic
 
@@ -45,7 +51,7 @@ alternative: programmatically via spring
 
 ### Console Consumer
 
-`kafka-console-consumer --bootstrap-server kafka:9092 --topic strings --from-beginning`
+`kafka-console-consumer --bootstrap-server kafka:9092 --from-beginning --topic strings`
 
 ---
 
@@ -55,4 +61,4 @@ alternative: programmatically via spring
 
 ### Consumer Group Details
 
-`kafka-consumer-groups --describe --group strings-filtered --bootstrap-server kafka:9092`
+`kafka-consumer-groups --describe --bootstrap-server kafka:9092 --group strings-filtered`
