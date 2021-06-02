@@ -6,6 +6,7 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 import springkafka.api.Greeting;
+import springkafka.topics.KafkaTopicConfig;
 
 /*
  * Messages do not have a key, therefore
@@ -15,7 +16,7 @@ import springkafka.api.Greeting;
 @Component
 public class KafkaGreetingListener {
 
-    @KafkaListener(topics = Greeting.GREETING_TOPIC, containerFactory = "greetingKafkaListenerContainerFactory")
+    @KafkaListener(topics = KafkaTopicConfig.TOPIC, containerFactory = "greetingKafkaListenerContainerFactory")
     public void greetingListener(Greeting greeting, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition, @Header(KafkaHeaders.OFFSET) int offset) {
         log.info("Consumer Group 'greeting-group' received {} from partition {} with offset={}", greeting, partition, offset);
     }

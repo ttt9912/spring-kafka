@@ -15,6 +15,7 @@ import java.util.Map;
  */
 @Configuration
 public class KafkaTopicConfig {
+    public static final String TOPIC = "strings";
 
     @Value("${kafka.host}")
     private String bootstrapAddress;
@@ -28,6 +29,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic stringsTopic() {
-        return new NewTopic("strings", 1, (short) 1);
+        return new NewTopic(TOPIC, 1, (short) 1);
     }
 }

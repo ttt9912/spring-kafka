@@ -1,4 +1,4 @@
-package springkafka.topics;
+package clientids.topics;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * KafkaAdmin bean - will automatically add topics for all beans of type NewTopic
+ * AdminClient - create topics programmatically
  */
 @Configuration
 public class KafkaTopicConfig {
-    public static final String TOPIC = "greeting";
+    public static final String TOPIC = "fruits";
 
     @Value("${kafka.host}")
     private String bootstrapAddress;
@@ -28,7 +28,7 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic greetingsTopic() {
+    public NewTopic stringsTopic() {
         return new NewTopic(TOPIC, 1, (short) 1);
     }
 }

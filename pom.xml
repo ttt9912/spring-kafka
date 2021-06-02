@@ -9,6 +9,7 @@
         <module>generic-message-examples</module>
         <module>generic-messages-framework</module>
         <module>kafka-ackmodes</module>
+        <module>kafka-client-ids</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

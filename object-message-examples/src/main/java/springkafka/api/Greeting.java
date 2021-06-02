@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Greeting {
-    public static final String GREETING_TOPIC = "greeting";
-
     private String msg;
     private String name;
 }

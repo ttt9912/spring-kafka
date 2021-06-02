@@ -1,6 +1,7 @@
 package ackmodes;
 
 import ackmodes.producer.KafkaStringPublisher;
+import ackmodes.topics.KafkaTopicConfig;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,13 +18,13 @@ public class AckModesApplication {
     CommandLineRunner producer(KafkaStringPublisher publisher) {
         return args -> {
             Thread.sleep(5000);
-            publisher.publishString("names", "John");
+            publisher.publishString(KafkaTopicConfig.TOPIC, "John");
             Thread.sleep(1000);
-            publisher.publishString("names", "Paul");
+            publisher.publishString(KafkaTopicConfig.TOPIC, "Paul");
             Thread.sleep(1000);
-            publisher.publishString("names", "George");
+            publisher.publishString(KafkaTopicConfig.TOPIC, "George");
             Thread.sleep(1000);
-            publisher.publishString("names", "Ringo");
+            publisher.publishString(KafkaTopicConfig.TOPIC, "Ringo");
         };
     }
 }

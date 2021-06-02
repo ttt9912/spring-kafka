@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import springkafka.api.Greeting;
+import springkafka.topics.KafkaTopicConfig;
 
 /*
  * By default, key=null
@@ -20,7 +21,7 @@ public class KafkaGreetingPublisher {
     private KafkaTemplate<String, Greeting> greetingKafkaTemplate;
 
     public void publishGreeting(final Greeting greeting) {
-        ListenableFuture<SendResult<String, Greeting>> future = greetingKafkaTemplate.send(Greeting.GREETING_TOPIC, greeting);
+        ListenableFuture<SendResult<String, Greeting>> future = greetingKafkaTemplate.send(KafkaTopicConfig.TOPIC, greeting);
 
         // optional callback to be executed after send
         future.addCallback(new ListenableFutureCallback<SendResult<String, Greeting>>() {

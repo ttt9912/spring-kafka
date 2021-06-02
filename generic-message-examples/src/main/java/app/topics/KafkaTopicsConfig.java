@@ -1,5 +1,7 @@
 package app.topics;
 
+import app.api.Book;
+import app.api.Movie;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,11 +30,11 @@ public class KafkaTopicsConfig {
 
     @Bean
     public NewTopic bookTopic() {
-        return new NewTopic("book", 3, (short) 1);
+        return new NewTopic(Book.BOOK_TOPIC, 3, (short) 1);
     }
 
     @Bean
     public NewTopic movieTopic() {
-        return new NewTopic("movie", 3, (short) 1);
+        return new NewTopic(Movie.MOVIE_TOPIC, 3, (short) 1);
     }
 }

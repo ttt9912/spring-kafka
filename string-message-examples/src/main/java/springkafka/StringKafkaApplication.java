@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import springkafka.producer.KafkaStringPublisher;
 
+import static springkafka.topics.KafkaTopicConfig.TOPIC;
+
 /*
  * Publishes/Consumes String values
  * - uses KafkaTemplate<String, String>
@@ -22,10 +24,10 @@ public class StringKafkaApplication {
     @Bean
     CommandLineRunner producer(KafkaStringPublisher publisher) {
         return args -> {
-            publisher.publishString("strings", "Hello");
-            publisher.publishString("strings", "World");
-            publisher.publishString("strings", "Kafka");
-            publisher.publishString("strings", "Rocks");
+            publisher.publishString(TOPIC, "Hello");
+            publisher.publishString(TOPIC, "World");
+            publisher.publishString(TOPIC, "Kafka");
+            publisher.publishString(TOPIC, "Rocks");
         };
     }
 }

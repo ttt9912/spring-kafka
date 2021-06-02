@@ -1,5 +1,6 @@
 package ackmodes.consumer;
 
+import ackmodes.topics.KafkaTopicConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -20,7 +21,7 @@ public class KafkaStringListener {
      * Default AckMode: BADGE
      * - on exception, offset is committed and consuming goes on
      */
-    @KafkaListener(topics = "names", groupId = "names-grp", containerFactory = "containerFactory")
+    @KafkaListener(topics = KafkaTopicConfig.TOPIC, groupId = "names-grp", containerFactory = "containerFactory")
     public void listen(final ConsumerRecord<String, String> record) {
         log.info("'names-grp' msg={} offset={}", record.value(), record.offset());
         if (record.value().equals("George")) {
@@ -32,7 +33,7 @@ public class KafkaStringListener {
      * without acknowledgment.acknowledge() records are consumed but not committed
      * after restart, records are consumed again
      */
-    @KafkaListener(topics = "names", groupId = "names-man-ack", containerFactory = "manualAckContainerFactory")
+    @KafkaListener(topics = KafkaTopicConfig.TOPIC, groupId = "names-man-ack", containerFactory = "manualAckContainerFactory")
     public void manualAck(final ConsumerRecord<String, String> record, final Acknowledgment acknowledgment) {
         log.info("'names-man-ack' msg={} offset={}", record.value(), record.offset());
         acknowledgment.acknowledge();
