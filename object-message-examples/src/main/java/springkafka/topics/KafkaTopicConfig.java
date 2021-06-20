@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * KafkaAdmin bean - will automatically add topics for all beans of type NewTopic
+ * KafkaAdmin bean - will automatically add multiple.clientids.producer1.topics for all beans of type NewTopic
  */
 @Configuration
 public class KafkaTopicConfig {

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- * AdminClient - create topics programmatically
+ * AdminClient - create multiple.clientids.producer1.topics programmatically
  */
 @Configuration
 public class KafkaTopicConfig {

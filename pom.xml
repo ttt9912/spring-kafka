@@ -10,6 +10,11 @@
         <module>generic-messages-framework</module>
         <module>kafka-ackmodes</module>
         <module>kafka-client-ids</module>
+        <module>multiple-clients</module>
+        <module>multiple-clients/clientids.producer1.producer-1</module>
+        <module>multiple-clients/consumer-1</module>
+        <module>multiple-clients/consumer-2</module>
+        <module>kafka-client-ids/fruit-clientids.producer1.producer-1</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

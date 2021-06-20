@@ -1,4 +1,4 @@
-package clientids.consumer;
+package clientids.consumer1.consumer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -32,7 +32,7 @@ public class KafkaConsumerConfig {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> containerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(stringConsumerFactory("names-grp"));
+        factory.setConsumerFactory(stringConsumerFactory("fruits-grp"));
         return factory;
     }
 

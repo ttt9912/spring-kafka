@@ -1,0 +1,5 @@
+If mutliple consumers are connected to the same consumer group,
+each partition will be consumed by only one client.
+
+A unique client id will not change this behaviour
+as long as the clients use the same consumer group.

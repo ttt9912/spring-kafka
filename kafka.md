@@ -29,7 +29,7 @@ connect to kafka and go to /bin
 
 ### Create Topic
 
-`kafka-topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic strings`
+`kafka-multiple.clientids.clientids.producer1.producer.topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic strings`
 
 alternative: programmatically via spring
 
@@ -37,15 +37,15 @@ alternative: programmatically via spring
 
 ### List Topics
 
-`kafka-topics --list --zookeeper zookeeper:2181`
+`kafka-multiple.clientids.clientids.producer1.producer.topics --list --zookeeper zookeeper:2181`
 
 ### Topic Details
 
-`kafka-topics --describe --zookeeper zookeeper:2181 --topic strings`
+`kafka-multiple.clientids.clientids.producer1.producer.topics --describe --zookeeper zookeeper:2181 --topic strings`
 
 ### Delete Topic
 
-`kafka-topics --delete --zookeeper zookeeper:2181 --topic strings`
+`kafka-multiple.clientids.clientids.producer1.producer.topics --delete --zookeeper zookeeper:2181 --topic strings`
 
 ---
 

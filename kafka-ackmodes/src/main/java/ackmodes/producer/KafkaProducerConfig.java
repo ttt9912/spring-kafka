@@ -14,7 +14,7 @@ import java.util.HashMap;
 /*
  * ProducerFactory - sets the strategy for creating Kafka Producer instances
  *
- * KafkaTemplate - wraps a Producer instance and provides convenience methods for sending messages to Kafka topics
+ * KafkaTemplate - wraps a Producer instance and provides convenience methods for sending messages to Kafka multiple.clientids.producer1.topics
  */
 @Configuration
 public class KafkaProducerConfig {
