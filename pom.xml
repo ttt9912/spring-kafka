@@ -10,7 +10,6 @@
         <module>generic-messages-framework</module>
         <module>kafka-ackmodes</module>
         <module>kafka-client-ids</module>
-        <module>testcontainers-kafka</module>
         <module>kafka-mtls</module>
     </modules>
     <parent>
