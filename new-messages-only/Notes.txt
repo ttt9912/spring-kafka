@@ -1,0 +1,5 @@
+To consume new messages only:
+
+- implement ConsumerSeekAware
+- override onPartitionAssigned()
+    - seekToEnd()

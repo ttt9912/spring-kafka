@@ -11,6 +11,8 @@
         <module>kafka-ackmodes</module>
         <module>kafka-client-ids</module>
         <module>kafka-mtls</module>
+        <module>new-messages-only</module>
+        <module>alert-producer</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
